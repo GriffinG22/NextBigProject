@@ -20,10 +20,7 @@ const DUMMY_MEETUPS = [
 
 const HomePage = () => {
   return (
-    <Layout>
       <MeetupList meetups={DUMMY_MEETUPS}/>
-    </Layout>
-    
   )
 }
 
