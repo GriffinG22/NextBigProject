@@ -25,6 +25,7 @@ const HomePage = (props) => {
   return <MeetupList meetups={props.meetups} />;
 };
 
+//Runs on build and revalidates with revalidate key in x seconds (Faster - use when data doesn't change frequently)
 export async function getStaticProps() {
   //fetch data from api
   return {
@@ -34,5 +35,16 @@ export async function getStaticProps() {
     revalidate: 10,
   };
 }
+
+//Constantly updated on the server side with every request - longer wait times (Use when data is changing frequently or you need the request)
+/* export async function getServerSideProps(context) {
+  const { req, res } = context;
+  //fetch from API
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
+} */
 
 export default HomePage;
