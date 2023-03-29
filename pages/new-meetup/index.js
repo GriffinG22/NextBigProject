@@ -32,6 +32,10 @@ const NewMeetupPage = () => {
         />
       </Head>
       <NewMeetupForm onAddMeetup={addMeetupHandler} />
+      <p className="warn-text">
+        This is a learning and demo project, please do not add events with
+        graphic imagery or explicit titles.
+      </p>
     </Fragment>
   );
 };
