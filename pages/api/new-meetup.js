@@ -3,15 +3,24 @@ import { MongoClient } from "mongodb";
 // /api/new-meetup
 // Only POST requests will trigger function
 
-function handler(req, res) {
+async function handler(req, res) {
   if (req.method === "POST") {
     const data = req.body;
 
-    const { title, image, address, description } = data;
-
-    MongoClient.connect(
+    const client = MongoClient.connect(
       "mongodb+srv://Griffin:zIhHEqqHqHhPREdM@cluster0.o8blapn.mongodb.net/meetups?retryWrites=true&w=majority"
     );
+    const db = client.db();
+
+    const meetupsCollection = db.collection("meetups");
+
+    const result = await meetupsCollection.insertOne(data);
+
+    console.log(result);
+
+    client.close();
+
+    res.status(201).json({ message: "Meetup Inserted!" });
   }
 }
 
